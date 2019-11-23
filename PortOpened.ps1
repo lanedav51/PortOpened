@@ -1,6 +1,6 @@
 $TxtPath = "InsertFileHere"
 $File = Import-Csv $TxtPath
-$Computers = $File.$Computers
+$Computers = $File.Computers
 $Ports = $File.Ports
 
 foreach($Computer in $Computers)
@@ -16,12 +16,12 @@ foreach($Computer in $Computers)
         $i = 0
         if($TCPTest -eq "True" -AND $i -eq 0)
         {
-            $obj | Export-Csv -Path PortOpened.csv
+            $obj | Export-Csv -Path '(get-date -f yyyy-MM-dd)PortOpened.csv'
             $i++
         }
         elseif($TCPTest -eq "True" -AND $i -ge 0)
         {
-            $obj | Export-Csv -Path PortOpened.csv -Append
+            $obj | Export-Csv -Path '(get-date -f yyyy-MM-dd)PortOpened.csv' -Append
             $i++
         }
         else
